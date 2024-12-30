@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Play YouTube Video with Custom Subtitles</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+        .video-container {
+            position: relative;
+            width: 560px;
+            height: 315px;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        .subtitles {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- Replace 'VIDEO_ID' with the actual ID of the YouTube video you want to embed -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/kuHqqk22DjM?si=PSFyCC23K41iEeJh&ampautoplay=1;start=13" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; allow="autoplay" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!--    <iframe src="https://www.youtube.com/embed/kuHqqk22DjM" title="Sherekilebi - Gogov Sheni Tvalebi,Gogov Genacvalebi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+        <div class="subtitles" id="subtitle">This is your subtitle text.</div>
+    </div>
+    <script>
+        // Example of updating subtitles dynamically
+        const subtitles = [
+            { time: 45, text: "გოგოვ შენი თვალები" },
+            { time: 1, text: "გოგოვ გენაცვალები." },
+            { time: 1, text: "სითაც ქარი დაუბერავს" },
+            { time: 1, text: "იქით მოგეპარები" }
+        ];
+
+        const subtitleElement = document.getElementById('subtitle');
+        let currentSubtitleIndex = 0;
+
+        function updateSubtitle() {
+            const currentTime = Math.floor((new Date().getTime() / 1000) % 60); // Simplified time simulation
+            if (currentSubtitleIndex < subtitles.length && currentTime >= subtitles[currentSubtitleIndex].time) {
+                subtitleElement.textContent = subtitles[currentSubtitleIndex].text;
+                currentSubtitleIndex++;
+            }
+        }
+
+        setInterval(updateSubtitle, 1000);
+    </script>
+</body>
+</html>
