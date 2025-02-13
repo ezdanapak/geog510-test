@@ -1,1 +1,3 @@
-This is base text file for my repository
+This is base text file for my repository.
+
+This text file after creating new test-branch 
